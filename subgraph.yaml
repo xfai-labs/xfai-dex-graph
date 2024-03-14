@@ -1,0 +1,47 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: XfaiV0Core
+    network: linea
+    source:
+      address: "0x8D58ee2D23f7920eA32e534aAD8d6753c88bc01A"
+      abi: XfaiV0Core
+      startBlock: 253239
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Burn
+        - ChangedOwner
+        - FlashLoan
+        - InfinityNFTFeeChange
+        - LpFeeChange
+        - Mint
+        - Paused
+        - Swap
+      abis:
+        - name: XfaiV0Core
+          file: ./abis/XfaiV0Core.json
+      eventHandlers:
+        - event: Burn(indexed address,uint256,uint256,indexed address)
+          handler: handleBurn
+        - event: ChangedOwner(indexed address)
+          handler: handleChangedOwner
+        - event: FlashLoan(indexed address,uint256,uint256)
+          handler: handleFlashLoan
+        - event: InfinityNFTFeeChange(uint256)
+          handler: handleInfinityNFTFeeChange
+        - event: LpFeeChange(uint256)
+          handler: handleLpFeeChange
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: Paused(bool)
+          handler: handlePaused
+        - event: Swap(indexed address,uint256,uint256,indexed address)
+          handler: handleSwap
+      file: ./src/xfai-v-0-core.ts

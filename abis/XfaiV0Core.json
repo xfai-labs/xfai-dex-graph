@@ -1,0 +1,288 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_factory", "type": "address" },
+      { "internalType": "address", "name": "_infinityNFT", "type": "address" },
+      { "internalType": "address", "name": "_wETH", "type": "address" },
+      { "internalType": "uint256", "name": "_lpFee", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_infinityNFTFee",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount1",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "Burn",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "ChangedOwner",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "wethAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "FlashLoan",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "InfinityNFTFeeChange",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "LpFeeChange",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "liquidity",
+        "type": "uint256"
+      }
+    ],
+    "name": "Mint",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "internalType": "bool", "name": "p", "type": "bool" }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "input",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "output",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "Swap",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token0", "type": "address" },
+      { "internalType": "address", "name": "_token1", "type": "address" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "burn",
+    "outputs": [
+      { "internalType": "uint256", "name": "amount0Out", "type": "uint256" },
+      { "internalType": "uint256", "name": "amount1Out", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_newLnftFee", "type": "uint256" }
+    ],
+    "name": "changeInfinityNFTFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_newLpFee", "type": "uint256" }
+    ],
+    "name": "changeLpFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token", "type": "address" },
+      { "internalType": "uint256", "name": "_tokenAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_wethAmount", "type": "uint256" },
+      { "internalType": "address", "name": "_to", "type": "address" },
+      { "internalType": "bytes", "name": "_data", "type": "bytes" }
+    ],
+    "name": "flashLoan",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalFee",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "infinityNFTFee",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lpFee",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token", "type": "address" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "mint",
+    "outputs": [
+      { "internalType": "uint256", "name": "liquidity", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bool", "name": "_p", "type": "bool" }],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token", "type": "address" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "skim",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token0", "type": "address" },
+      { "internalType": "address", "name": "_token1", "type": "address" },
+      { "internalType": "address", "name": "_to", "type": "address" }
+    ],
+    "name": "swap",
+    "outputs": [
+      { "internalType": "uint256", "name": "amount0In", "type": "uint256" },
+      { "internalType": "uint256", "name": "amount1Out", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_token", "type": "address" }
+    ],
+    "name": "sync",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
