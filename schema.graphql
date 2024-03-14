@@ -1,4 +1,4 @@
-type Burn @entity(immutable: true) {
+type RemoveLiquidity @entity(immutable: true) {
   id: Bytes!
   sender: Bytes! # address
   amount0: BigInt! # uint256
@@ -9,52 +9,10 @@ type Burn @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type ChangedOwner @entity(immutable: true) {
-  id: Bytes!
-  owner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type FlashLoan @entity(immutable: true) {
-  id: Bytes!
-  sender: Bytes! # address
-  tokenAmount: BigInt! # uint256
-  wethAmount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type InfinityNFTFeeChange @entity(immutable: true) {
-  id: Bytes!
-  newFee: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type LpFeeChange @entity(immutable: true) {
-  id: Bytes!
-  newFee: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Mint @entity(immutable: true) {
+type AddLiquidity @entity(immutable: true) {
   id: Bytes!
   sender: Bytes! # address
   liquidity: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Paused @entity(immutable: true) {
-  id: Bytes!
-  p: Boolean! # bool
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -66,6 +24,58 @@ type Swap @entity(immutable: true) {
   input: BigInt! # uint256
   output: BigInt! # uint256
   to: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Boost @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  share: BigInt! # uint256
+  INFT_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type HarvestETH @entity(immutable: true) {
+  id: Bytes!
+  harvestedAmount: BigInt! # uint256
+  harvestedShare: BigInt! # uint256
+  INFT_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type HarvestToken @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  harvestedAmount: BigInt! # uint256
+  harvestedShare: BigInt! # uint256
+  INFT_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type INFTMint @entity(immutable: true) {
+  id: Bytes!
+  from: Bytes! # address
+  to: Bytes! # address
+  share: BigInt! # uint256
+  INFT_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PoolCreated @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  pool: Bytes! # address
+  allPoolsSize: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

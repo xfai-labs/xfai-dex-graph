@@ -16,13 +16,8 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - Burn
-        - ChangedOwner
-        - FlashLoan
-        - InfinityNFTFeeChange
-        - LpFeeChange
-        - Mint
-        - Paused
+        - AddLiquidity
+        - RemoveLiquidity
         - Swap
       abis:
         - name: XfaiV0Core
@@ -30,18 +25,57 @@ dataSources:
       eventHandlers:
         - event: Burn(indexed address,uint256,uint256,indexed address)
           handler: handleBurn
-        - event: ChangedOwner(indexed address)
-          handler: handleChangedOwner
-        - event: FlashLoan(indexed address,uint256,uint256)
-          handler: handleFlashLoan
-        - event: InfinityNFTFeeChange(uint256)
-          handler: handleInfinityNFTFeeChange
-        - event: LpFeeChange(uint256)
-          handler: handleLpFeeChange
         - event: Mint(indexed address,uint256)
           handler: handleMint
-        - event: Paused(bool)
-          handler: handlePaused
         - event: Swap(indexed address,uint256,uint256,indexed address)
           handler: handleSwap
-      file: ./src/xfai-v-0-core.ts
+      file: ./src/xfai-v0-core.ts
+  - kind: ethereum
+    name: INFT
+    network: linea
+    source:
+      address: "0xa155f12D3Be29BF20b615e1e7F066aE9E3C5239a"
+      abi: INFT
+      startBlock: 253238
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Boost
+        - HarvestETH
+        - HarvestToken
+        - INFTMint
+      abis:
+        - name: INFT
+          file: ./abis/INFT.json
+      eventHandlers:
+        - event: Boost(indexed address,uint256,uint256)
+          handler: handleBoost
+        - event: HarvestETH(uint256,uint256,uint256)
+          handler: handleHarvestETH
+        - event: HarvestToken(address,uint256,uint256,uint256)
+          handler: handleHarvestToken
+        - event: Mint(indexed address,indexed address,uint256,uint256)
+          handler: handleMint
+      file: ./src/inft.ts
+  - kind: ethereum
+    name: Factory
+    network: linea
+    source:
+      address: "0xa5136eAd459F0E61C99Cec70fe8F5C24cF3ecA26"
+      abi: Factory
+      startBlock: 222864
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - PoolCreated
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: PoolCreated(indexed address,indexed address,uint256)
+          handler: handlePoolCreated
+      file: ./src/factory.ts
