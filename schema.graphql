@@ -1,17 +1,16 @@
-type PoolCreated @entity(immutable: true) {
+type Pool @entity(immutable: true) {
   id: Bytes!
-  token: Bytes! # address
+  token: ID! # address
   pool: Bytes! # address
-  allPoolsSize: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type ChangeLiquidity @entity(immutable: true) {
+type LiquidityChange @entity(immutable: true) {
   id: Bytes!
   owner: Bytes! # address
-  token: Bytes! # address
+  token: Pool!
   liquidity: BigInt!
   blockNumber: BigInt!
   blockTimestamp: BigInt!

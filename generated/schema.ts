@@ -11,7 +11,7 @@ import {
   BigDecimal,
 } from "@graphprotocol/graph-ts";
 
-export class PoolCreated extends Entity {
+export class Pool extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -19,26 +19,24 @@ export class PoolCreated extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save PoolCreated entity without an ID");
+    assert(id != null, "Cannot save Pool entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type PoolCreated must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type Pool must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("PoolCreated", id.toBytes().toHexString(), this);
+      store.set("Pool", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): PoolCreated | null {
-    return changetype<PoolCreated | null>(
-      store.get_in_block("PoolCreated", id.toHexString()),
+  static loadInBlock(id: Bytes): Pool | null {
+    return changetype<Pool | null>(
+      store.get_in_block("Pool", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): PoolCreated | null {
-    return changetype<PoolCreated | null>(
-      store.get("PoolCreated", id.toHexString()),
-    );
+  static load(id: Bytes): Pool | null {
+    return changetype<Pool | null>(store.get("Pool", id.toHexString()));
   }
 
   get id(): Bytes {
@@ -54,17 +52,17 @@ export class PoolCreated extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
-  get token(): Bytes {
+  get token(): string {
     let value = this.get("token");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set token(value: Bytes) {
-    this.set("token", Value.fromBytes(value));
+  set token(value: string) {
+    this.set("token", Value.fromString(value));
   }
 
   get pool(): Bytes {
@@ -78,19 +76,6 @@ export class PoolCreated extends Entity {
 
   set pool(value: Bytes) {
     this.set("pool", Value.fromBytes(value));
-  }
-
-  get allPoolsSize(): BigInt {
-    let value = this.get("allPoolsSize");
-    if (!value || value.kind == ValueKind.NULL) {
-      throw new Error("Cannot return null for a required field.");
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set allPoolsSize(value: BigInt) {
-    this.set("allPoolsSize", Value.fromBigInt(value));
   }
 
   get blockNumber(): BigInt {
@@ -133,7 +118,7 @@ export class PoolCreated extends Entity {
   }
 }
 
-export class ChangeLiquidity extends Entity {
+export class LiquidityChange extends Entity {
   constructor(id: Bytes) {
     super();
     this.set("id", Value.fromBytes(id));
@@ -141,25 +126,25 @@ export class ChangeLiquidity extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ChangeLiquidity entity without an ID");
+    assert(id != null, "Cannot save LiquidityChange entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.BYTES,
-        `Entities of type ChangeLiquidity must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
+        `Entities of type LiquidityChange must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`,
       );
-      store.set("ChangeLiquidity", id.toBytes().toHexString(), this);
+      store.set("LiquidityChange", id.toBytes().toHexString(), this);
     }
   }
 
-  static loadInBlock(id: Bytes): ChangeLiquidity | null {
-    return changetype<ChangeLiquidity | null>(
-      store.get_in_block("ChangeLiquidity", id.toHexString()),
+  static loadInBlock(id: Bytes): LiquidityChange | null {
+    return changetype<LiquidityChange | null>(
+      store.get_in_block("LiquidityChange", id.toHexString()),
     );
   }
 
-  static load(id: Bytes): ChangeLiquidity | null {
-    return changetype<ChangeLiquidity | null>(
-      store.get("ChangeLiquidity", id.toHexString()),
+  static load(id: Bytes): LiquidityChange | null {
+    return changetype<LiquidityChange | null>(
+      store.get("LiquidityChange", id.toHexString()),
     );
   }
 

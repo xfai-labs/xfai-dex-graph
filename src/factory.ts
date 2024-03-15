@@ -1,13 +1,12 @@
 import { PoolCreated as PoolCreatedEvent } from "../generated/Factory/Factory";
-import { PoolCreated } from "../generated/schema";
+import { Pool } from "../generated/schema";
 
 export function handlePoolCreated(event: PoolCreatedEvent): void {
-  let entity = new PoolCreated(
+  let entity = new Pool(
     event.transaction.hash.concatI32(event.logIndex.toI32())
   );
-  entity.token = event.params.token;
+  entity.token = event.params.token.toHexString();
   entity.pool = event.params.pool;
-  entity.allPoolsSize = event.params.allPoolsSize;
 
   entity.blockNumber = event.block.number;
   entity.blockTimestamp = event.block.timestamp;
