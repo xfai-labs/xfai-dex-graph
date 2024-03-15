@@ -1,81 +1,18 @@
-type RemoveLiquidity @entity(immutable: true) {
-  id: Bytes!
-  sender: Bytes! # address
-  amount0: BigInt! # uint256
-  amount1: BigInt! # uint256
-  to: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type AddLiquidity @entity(immutable: true) {
-  id: Bytes!
-  sender: Bytes! # address
-  liquidity: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Swap @entity(immutable: true) {
-  id: Bytes!
-  sender: Bytes! # address
-  input: BigInt! # uint256
-  output: BigInt! # uint256
-  to: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type Boost @entity(immutable: true) {
-  id: Bytes!
-  from: Bytes! # address
-  share: BigInt! # uint256
-  INFT_id: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type HarvestETH @entity(immutable: true) {
-  id: Bytes!
-  harvestedAmount: BigInt! # uint256
-  harvestedShare: BigInt! # uint256
-  INFT_id: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type HarvestToken @entity(immutable: true) {
-  id: Bytes!
-  token: Bytes! # address
-  harvestedAmount: BigInt! # uint256
-  harvestedShare: BigInt! # uint256
-  INFT_id: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type INFTMint @entity(immutable: true) {
-  id: Bytes!
-  from: Bytes! # address
-  to: Bytes! # address
-  share: BigInt! # uint256
-  INFT_id: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type PoolCreated @entity(immutable: true) {
   id: Bytes!
   token: Bytes! # address
   pool: Bytes! # address
   allPoolsSize: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChangeLiquidity @entity(immutable: true) {
+  id: Bytes!
+  owner: Bytes! # address
+  token: Bytes! # address
+  liquidity: BigInt!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

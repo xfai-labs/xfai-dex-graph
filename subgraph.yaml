@@ -5,61 +5,6 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: XfaiV0Core
-    network: linea
-    source:
-      address: "0x8D58ee2D23f7920eA32e534aAD8d6753c88bc01A"
-      abi: XfaiV0Core
-      startBlock: 253239
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - AddLiquidity
-        - RemoveLiquidity
-        - Swap
-      abis:
-        - name: XfaiV0Core
-          file: ./abis/XfaiV0Core.json
-      eventHandlers:
-        - event: Burn(indexed address,uint256,uint256,indexed address)
-          handler: handleBurn
-        - event: Mint(indexed address,uint256)
-          handler: handleMint
-        - event: Swap(indexed address,uint256,uint256,indexed address)
-          handler: handleSwap
-      file: ./src/xfai-v0-core.ts
-  - kind: ethereum
-    name: INFT
-    network: linea
-    source:
-      address: "0xa155f12D3Be29BF20b615e1e7F066aE9E3C5239a"
-      abi: INFT
-      startBlock: 253238
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Boost
-        - HarvestETH
-        - HarvestToken
-        - INFTMint
-      abis:
-        - name: INFT
-          file: ./abis/INFT.json
-      eventHandlers:
-        - event: Boost(indexed address,uint256,uint256)
-          handler: handleBoost
-        - event: HarvestETH(uint256,uint256,uint256)
-          handler: handleHarvestETH
-        - event: HarvestToken(address,uint256,uint256,uint256)
-          handler: handleHarvestToken
-        - event: Mint(indexed address,indexed address,uint256,uint256)
-          handler: handleMint
-      file: ./src/inft.ts
-  - kind: ethereum
     name: Factory
     network: linea
     source:
@@ -79,3 +24,25 @@ dataSources:
         - event: PoolCreated(indexed address,indexed address,uint256)
           handler: handlePoolCreated
       file: ./src/factory.ts
+  - kind: ethereum
+    name: Periphery
+    network: linea
+    source:
+      address: "0xD538be6e9026C13D130C9e17d509E69C8Bb0eF33"
+      abi: Periphery
+      startBlock: 1105173
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ChangeLiquidity
+      abis:
+        - name: Periphery
+          file: ./abis/Periphery.json
+      callHandlers:
+        - function: addLiquidity(address,address,uint256,uint256,uint256,uint256)
+          handler: handleAddLiquidity
+        - function: removeLiquidity(address,address,address,uint256,uint256,uint256,uint256)
+          handler: handleRemoveLiquidity
+      file: ./src/periphery.ts

@@ -1,17 +1,10 @@
 {
   "linea": {
-    "XfaiV0Core": {
-      "address": "0x8D58ee2D23f7920eA32e534aAD8d6753c88bc01A",
-      "startBlock": 253239
-    },
-    "INFT": {
-      "address": "0xa155f12D3Be29BF20b615e1e7F066aE9E3C5239a"
-    },
-    "Contract": {
-      "address": "0xa5136eAd459F0E61C99Cec70fe8F5C24cF3ecA26"
-    },
     "Factory": {
       "address": "0xa5136eAd459F0E61C99Cec70fe8F5C24cF3ecA26"
+    },
+    "Periphery": {
+      "address": "0xD538be6e9026C13D130C9e17d509E69C8Bb0eF33"
     }
   }
 }
