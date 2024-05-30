@@ -15,6 +15,7 @@ dataSources:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
+      file: ./src/factory.ts
       entities:
         - Pool
       abis:
@@ -23,26 +24,25 @@ dataSources:
       eventHandlers:
         - event: PoolCreated(indexed address,indexed address,uint256)
           handler: handlePoolCreated
-      file: ./src/factory.ts
-  - kind: ethereum
-    name: Periphery
+templates:
+  - name: Pool
+    kind: ethereum/contract
     network: linea
     source:
-      address: "0xD538be6e9026C13D130C9e17d509E69C8Bb0eF33"
-      abi: Periphery
-      startBlock: 1105173
+      abi: Pool
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
+      file: ./src/pool.ts
       entities:
-        - ChangeLiquidity
+        - LiquidityChange
+        - Sync
       abis:
-        - name: Periphery
-          file: ./abis/Periphery.json
-      callHandlers:
-        - function: addLiquidity(address,address,uint256,uint256,uint256,uint256)
-          handler: handleAddLiquidity
-        - function: removeLiquidity(address,address,address,uint256,uint256,uint256,uint256)
-          handler: handleRemoveLiquidity
-      file: ./src/periphery.ts
+        - name: Pool
+          file: ./abis/Pool.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Sync(uint256,uint256)
+          handler: handleSync

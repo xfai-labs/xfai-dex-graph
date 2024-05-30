@@ -1,7 +1,7 @@
 type Pool @entity(immutable: true) {
   id: Bytes!
-  token: ID! # address
-  pool: Bytes! # address
+  token: Bytes! # address
+  pool: ID! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -10,8 +10,20 @@ type Pool @entity(immutable: true) {
 type LiquidityChange @entity(immutable: true) {
   id: Bytes!
   owner: Bytes! # address
-  token: Pool!
+  token: Bytes!
+  pool: Bytes!
   liquidity: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Sync @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes!
+  pool: Bytes!
+  reserve: BigInt!
+  weight: BigInt!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
